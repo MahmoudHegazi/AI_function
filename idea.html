@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+#1 {
+  color: red;
+}
+/*can be orange */
+p {
+  color: orange;
+}
+
+.container0 {
+
+  font-size: 30px;
+
+}
+
+.container1 {
+  font-size: 10px;
+}
+
+
+.container2 {
+  font-size: 60px;
+}
+
+#p1 {
+  font-size: 1.5em;
+  color: lightblue;
+}
+
+#p2 {
+  font-size: 2.5em;
+  color: green;
+}
+
+#p3 {
+  font-size: 1em;
+}
+
+</style>
+</head>
+<body>
+
+<h1 onclick="fontPixeL('this')">The z-index Property</h1>
+
+<img src="w3css.gif" width="100" height="140" onclick="fontPixeL('this')">
+
+<div class="container0" onclick="fontPixeL(this)">
+<p id="p1">I'm 1.5em</p>
+</div>
+
+<div class="container1" onclick="fontPixeL(this)">
+<p id="p2">I'm 2.5em</p>
+</div>
+
+<div class="container2" onclick="fontPixeL(this)">
+<p id="p3">This Is AI it Gonna Guess try to add Any new element with difrent font size</p>
+</div>
+
+<p><span id="result"></span> PX</p>
+
+<script>
+
+// font in pixel tool
+
+//document.getElementById("myList").firstElementChild.innerHTML;
+
+function fontPixeL(parent_size) {
+   const parent = window.getComputedStyle(parent_size).fontSize;
+   var true_size1 = "";
+   "10px"
+   let px_start = parent.length - 2;
+   let str_number = parent.slice(0, px_start);
+   let number = parseFloat(str_number);
+   alert(number);
+   let mychild = parent_size.firstElementChild;
+   let child_size = window.getComputedStyle(mychild).fontSize;
+   let px_start1 = child_size.length - 2;
+   let str_number1 = child_size.slice(0, px_start1);
+   let number1 = parseFloat(str_number1);
+   alert(number1);
+   }
+
+
+
+</script>
+</body>
+</html>
