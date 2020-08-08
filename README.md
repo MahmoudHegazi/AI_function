@@ -10,4 +10,7 @@ I created A fake database with all database features only for 1 session
 *  of child element in em, by the way no function until now do that tell your what font size of element in EM
 *  I think w3c must add this  method to the core of HTML or any js framwork
 
+  // fake sql query database.parent_name[index_id_recored] I creating new SQL with js
+
+
 <img src="fapp1.PNG">
