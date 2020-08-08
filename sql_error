@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+#1 {
+  color: red;
+}
+/*can be orange */
+p {
+  color: orange;
+}
+
+.container0 {
+
+  font-size: 30px;
+
+}
+
+.container1 {
+  font-size: 10px;
+}
+
+
+.container2 {
+  font-size: 60px;
+}
+
+#p1 {
+  font-size: 1.5em;
+  color: lightblue;
+}
+
+#p2 {
+  font-size: 2.5em;
+  color: green;
+}
+
+#p3 {
+  font-size: 1em;
+}
+
+
+/* style database */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  width: 15%;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.message {
+  background-color: lightblue;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px;
+  text-align: center;
+  display: none;
+}
+
+.mydata {
+  color: blue;
+}
+</style>
+</head>
+<body>
+
+<div class="message" id="server_message"></div>
+
+<div style="height:400px;overflow:auto;border:2px solid black;padding: 4px;">
+
+<div class="container0" onclick="fontPixeL(this)">
+<p id="p1">I'm 1.5em</p>
+</div>
+
+<div class="container1" onclick="fontPixeL(this)">
+<p id="p2">I'm 2.5em</p>
+</div>
+
+<div class="container2" onclick="fontPixeL(this)">
+<p id="p3">This Is AI it Gonna Guess try to add Any new element with difrent font size</p>
+</div>
+
+
+</div>
+
+<div id="Anyalasis_report" class="info_container">
+<h2>AI and Data analysis report</h2>
+<p>Parent Tag: <span class="mydata" id="parent_name"></span></p>
+<p>Parent FontSize in Pixel: <span class="mydata" id="parent_sizepx"></span></p>
+<p>Child Tag: <span class="mydata" id="child_name"></span></p>
+<p>Child FontSize in Pixel: <span class="mydata"  id="child_sizepx"></span></p>
+<p>Child FontSize in EM: <span class="mydata" id="child_sizeem"></span></p>
+
+</div>
+
+<!-- Fake database -->
+
+
+<h2>Database Table</h2>
+<div style="display:flex;width:100%;flex-wrap:wrap;">
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Parent Tag </th>
+    <th>Parent Size px </th>
+    <th>Child Tag </th>
+    <th>Child Size px</th>
+    <th>Child Size EM</th>
+  </tr>
+</table>
+
+<table id="myTable">
+</table>
+</div>
+
+<input placeholder="Enter SQL Query" id="mysql">
+<p id="fakesql"></p>
+<button id="myquery" onclick="query()">Excute Query</button>
+<script>
+
+// font in pixel tool
+
+
+
+
+//document.getElementById("myList").firstElementChild.innerHTML;
+const pname = document.getElementById("parent_name");
+const p_sizepx = document.getElementById("parent_sizepx");
+const cname = document.getElementById("child_name");
+const csize_px = document.getElementById("child_sizepx");
+const csize_em = document.getElementById("child_sizeem");
+const messager = document.getElementById("server_message");
+const sql = document.getElementById("mysql");
+const sql_query = document.getElementById("fakesql");
+const excuter = document.getElementById("myquery");
+
+function query() {
+let indexer = 0;
+let memory = "";
+const columnnames = ["Parent Tag", "Parent Size px", "Child Tag",
+"Child Size px", "Child Size EM"];
+
+let user_query = "SELECT P FROM fonter";
+for (let i=0; i < user_query.length; i++) {
+  if (user_query[0] == "S" || user_query[0] == "s") {
+    indexer += 1;
+    alert(indexer);
+  } 
+  if (user_query[5] == "T" || user_query[5] == "t") {
+    indexer += 1;
+  }
+  
+  // get the right table name from the query
+  let table_name = user_query.lastIndexOf(database.name);
+  
+  
+  // check if there is form
+  let from_start = table_name - 5;
+  let from_end = table_name - 2;
+  
+  
+  
+  if (indexer == 2) {
+  let column_start = 7;
+  let column_end = from_start - 2;
+  }
+  
+  if (user_query[from_start] == "F" || user_query[from_start] == "f") {
+     indexer += 1;
+  }
+  
+  if (indexer == 3) {
+     for (var n=column_start; n < column_end; n++) {
+       memory += user_query[n];
+       alert(memory);
+       
+      
+     }
+  }
+}
+}
+
+let database = {
+  name: "admin",
+  parent_name : [],
+  parent_size : [],
+  child_name : [],
+  child_size: [],
+  child_em: [],
+  index: 0
+};
+
+let myapp = {
+  parent_name : "",
+  parent_size : 0,
+  child_name : "",
+  child_size: 0,
+  child_em: 0
+};
+
+
+/* database saver function */
+  function add_to_database(pname, psize, cname, csize_px, csize_em, index) {
+  var table = document.getElementById("myTable");
+  var row = table.insertRow(0);
+  var cell0 = row.insertCell(0);
+  var cell1 = row.insertCell(1);
+  var cell2 = row.insertCell(2);
+  var cell3 = row.insertCell(3);
+  var cell4 = row.insertCell(4);
+  var cell5 = row.insertCell(5);
+  cell0.innerHTML = database.index;
+  cell1.innerHTML = pname;
+  cell2.innerHTML = psize;
+  cell3.innerHTML = cname;
+  cell4.innerHTML = csize_px;
+  cell5.innerHTML = csize_em;
+  messager.style.display = "block";
+  messager.innerText = `New Recored Added To Database with id: ${index}`;
+  setTimeout(function(){ messager.style.display = "none"; }, 3000);
+}
+
+
+function fontPixeL(parent_size) {
+   const parent = window.getComputedStyle(parent_size).fontSize;
+
+/*var true_size1 = "";
+   "10px"
+   */
+   let tagname = parent_size.tagName;
+   myapp.parent_name = tagname;
+   let px_start = parent.length - 2;
+   let str_number = parent.slice(0, px_start);
+   let number = parseFloat(str_number);
+   myapp.parent_size = number;
+   let mychild = parent_size.firstElementChild;
+   let tagname1 = mychild.tagName;
+   myapp.child_name = tagname1;
+   let child_size = window.getComputedStyle(mychild).fontSize;
+   let px_start1 = child_size.length - 2;
+   let str_number1 = child_size.slice(0, px_start1);
+   let number1 = parseFloat(str_number1);
+   myapp.child_size = number1;
+   // get size of em
+   let p_em = number1 / number;
+   myapp.child_em = p_em;
+   
+   /*save recored */
+   
+  database.parent_name.push(myapp.parent_name);  
+  database.parent_size.push(myapp.parent_size);
+  database.child_name.push(myapp.child_name);
+  database.child_size.push(myapp.child_size);
+  database.child_em.push(myapp.child_em);
+  database.index += 1;
+  
+  
+  add_to_database(myapp.parent_name, myapp.parent_size,
+  myapp.child_name, myapp.child_size, myapp.child_em, database.index);
+
+
+
+   
+   
+   /*show recored */
+   pname.innerHTML = myapp.parent_name;
+   p_sizepx.innerText = myapp.parent_size;
+   cname.innerText = myapp.child_name;
+   csize_px.innerText = myapp.child_size;
+   csize_em.innerText = myapp.child_em;
+   }
+
+
+
+</script>
+</body>
+</html>
