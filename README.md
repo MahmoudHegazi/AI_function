@@ -2,6 +2,8 @@
 
 Ultimate dynamic try add new div with child and set size for parent and child
 
+I created A fake database with all database features only for 1 session
+
 ## imporant (Invited new method)
 
 *  IT can collect alot of info about the element and its parent and finally calculate and get the font size in EM
